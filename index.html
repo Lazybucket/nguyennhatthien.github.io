@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Động Đất và Các Kiến Thức Liên Quan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Times New Roman', serif;
+      transition: background 1s ease-in-out;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2em;
+    }
+    .gradient-bg {
+      background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
+      background-size: 400%;
+      animation: gradient 15s ease infinite;
+    }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hidden-section { display: none; }
+    .main-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .title-img {
+      max-width: 80%;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .btn-container {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-menu {
+      border: none;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      font-size: 2.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    .btn-menu:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 1);
+    }
+    .play-btn { background-color: #ff6f00; color: white; }
+    .theory-btn { background-color: #ffd700; color: #1e90ff; }
+    .video-btn { background-color: #8b5cf6; color: white; }
+    .info-btn { background-color: #ec4899; color: white; }
+    .quit-btn {
+      background: #ef4444;
+      color: white;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .quit-btn:hover { background: #dc2626; transform: scale(1.05); }
+    .content-box {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      font-size: 24px;
+      color: #333;
+    }
+    .option-btn {
+      background: #f9fafb;
+      border: 2px solid #d1d5db;
+      padding: 1rem;
+      font-size: 24px;
+      border-radius: 1rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .option-btn:hover {
+      background: #c7d2fe;
+      transform: scale(1.03);
+    }
+    .correct {
+      background: linear-gradient(135deg, #34d399, #10b981) !important;
+      color: white !important;
+    }
+    .wrong {
+      background: linear-gradient(135deg, #f87171, #ef4444) !important;
+      color: white !important;
+    }
+    table {
+      width: 100%;
+      margin-top: 1rem;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 10px;
+      text-align: center;
+      font-size: 21.6px;
+    }
+    th { background-color: #e0e7ff; }
+    .music-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #fff;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .footer-left {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+    .footer-right {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      color: #666;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+    .loading-text {
+      color: white;
+      font-size: 36px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+      animation: pulse 1.5s infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .progress-bar-container {
+      width: 300px;
+      height: 20px;
+      background: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      transition: width 1.5s ease-in-out;
+    }
+    video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .theory-content p, .theory-content li {
+      color: #000;
+    }
+    .theory-content ul {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+    .theory-content li:before {
+      content: "•";
+      color: #000;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    a {
+      color: #1e90ff;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: #ff6f00;
+    }
+  </style>
+</head>
+
+<body class="gradient-bg">
+
+  <!-- Màn hình loading -->
+  <div id="loading-screen">
+    <div id="loading-text" class="loading-text"></div>
+    <div id="progress-bar-container" class="progress-bar-container">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- Màn hình chính -->
+  <div id="main-screen" class="main-screen">
+    <img src="font.png" alt="Title" class="title-img">
+    <div class="btn-container">
+      <button onclick="showWithLoading('showPractice', true)" class="btn-menu play-btn">▶️</button>
+      <button onclick="showWithLoading('showTheory', true)" class="btn-menu theory-btn">📚</button>
+      <button onclick="showWithLoading('showVideo', true)" class="btn-menu video-btn">🎥</button>
+      <button onclick="showWithLoading('showInfo', true)" class="btn-menu info-btn">ℹ️</button>
+    </div>
+  </div>
+
+  <!-- THỰC HÀNH -->
+  <div id="practice" class="hidden-section w-11/12 max-w-2xl content-box text-center">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-green-700">Thực hành trắc nghiệm</h2>
+      <button onclick="showWithLoading('returnToMain', false)" class="quit-btn">Thoát</button>
+    </div>
+    <div id="feedback" class="hidden mb-4 px-4 py-3 text-white font-bold rounded-lg text-lg"></div>
+    <div id="question" class="text-xl font-semibold mb-6"></div>
+    <div id="options" class="flex flex-col gap-4 mb-6"></div>
+    <button id="nextBtn" onclick="nextQuestion()" disabled class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg">Câu tiếp theo</button>
+  </div>
+
+  <!-- LÝ THUYẾT -->
+  <div id="theory" class="hidden-section w-11/12 max-w-4xl content-box">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-blue-700">Lý thuyết Địa lý</h2>
+      <button onclick="showWithLoading('returnToMain', false)" class="quit-btn">Thoát</button>
+    </div>
+    <img src="image.png" alt="Cấu tạo Trái đất" class="w-full rounded-lg mb-6 shadow-lg">
+    <table>
+      <thead>
+        <tr>
+          <th>Đặc điểm</th><th>Vỏ Trái Đất</th><th>Lớp Manti</th><th>Lớp Nhân</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Độ dày</td><td>5-70km</td><td>2900km</td><td>3400km</td>
+        </tr>
+        <tr>
+          <td>Trạng thái</td><td>Rắn chắc</td><td>Quánh dẻo - rắn</td><td>Lỏng - rắn</td>
+        </tr>
+        <tr>
+          <td>Nhiệt độ</td><td>~1000°C</td><td>1500-3700°C</td><td>5000°C</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="theory-content mt-4">
+      <p class="font-bold">2. Các địa mảng (mảng kiến tạo)</p>
+      <p class="font-bold">* Bảy địa mảng chính cấu tạo nên lớp vỏ Trái đất:</p>
+      <ul>
+        <li> Mảng Thái Bình Dương</li>
+        <li> Mảng Âu - Á</li>
+        <li> Mảng Ấn Độ - Ô-xtrây-li-a</li>
+        <li> Mảng châu Phi</li>
+        <li> Mảng Bắc Mỹ</li>
+        <li> Mảng Nam Mỹ</li>
+        <li> Mảng Nam Cực</li>
+      </ul>
+      <p>- Việt Nam nằm ở mảng Âu - Á</p>
+      <p class="font-bold">* Các mảng xô vào nhau và đới tiếp giáp của các địa mảng đó:</p>
+      <ul>
+        <li> Các địa mảng xô vào nhau: mảng Phi với mảng Âu - Á; mảng Âu - Á với mảng Ấn Độ; mảng Ấn Độ với mảng Thái Bình Dương; mảng Bắc Mĩ với mảng TBD</li>
+      </ul>
+      <p class="font-bold mt-4">2. Động đất</p>
+      <p class="font-bold">3. Động đất</p>
+      <p>+ Động đất là những rung chuyển đột ngột mạnh mẽ của vỏ Trái Đất.</p>
+      <p>+ Nguyên nhân: do hoạt động của núi lửa, sự dịch chuyển của các mảng kiến tạo, đứt gãy trong vỏ Trái Đất.</p>
+      <p class="font-bold">- Hậu quả:</p>
+      <ul>
+        <li> Đổ nhà, đổ cửa, các công trình xây dựng</li>
+        <li> Có thể gây nên lở đất, biến dạng đáy biển, làm phát sinh sóng thần khi xảy ra ở biển</li>
+      </ul>
+      <p class="font-bold">- Dấu hiệu:</p>
+      <ul>
+        <li> Một số loài động vật có biểu hiện khác thường, hoảng loạn tìm nơi trú ẩn</li>
+        <li> Nước sông hồ rút bất thường</li>
+        <li> Bầu trời, hướng gió, khí hậu biến đổi lạ</li>
+      </ul>
+      <p class="font-bold">- Việc cần làm: chui xuống gầm bàn, sử dụng thang bộ, không lái xe, chú ý bảo vệ đầu...</p>
+    </div>
+  </div>
+
+  <!-- VIDEO ĐỘNG ĐẤT -->
+  <div id="video" class="hidden-section w-11/12 max-w-4xl content-box">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-purple-700">Video Động Đất</h2>
+      <button onclick="showWithLoading('returnToMain', false)" class="quit-btn">Thoát</button>
+    </div>
+    <video controls autoplay loop>
+      <source src="earthquake.mp4" type="video/mp4">
+      Trình duyệt của bạn không hỗ trợ video.
+    </video>
+  </div>
+
+  <!-- TRANG GIỚI THIỆU -->
+  <div id="info" class="hidden-section w-11/12 max-w-4xl content-box">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-pink-700">Giới Thiệu</h2>
+      <button onclick="showWithLoading('returnToMain', false)" class="quit-btn">Thoát</button>
+    </div>
+    <h3 class="text-xl font-semibold mb-4">Chào mừng đến với Thế Giới Kiến Thức!</h3>
+    <p class="mb-4">Đây là trang web giáo dục về động đất và các kiến thức địa lý liên quan. Bạn có thể:</p>
+    <ul class="list-disc list-inside mb-4">
+      <li>Học lý thuyết về cấu tạo Trái Đất và các địa mảng.</li>
+      <li>Thực hành trắc nghiệm để kiểm tra kiến thức.</li>
+      <li>Xem video minh họa về động đất.</li>
+      <li>Tải tài liệu học tập (sẽ sớm cập nhật).</li>
+    </ul>
+    <p class="mb-4">Tải ứng dụng liên quan:</p>
+    <ul class="list-disc list-inside mb-4">
+      <li><a href="https://apps.apple.com/vn/app/giao-duc-an-toan-dong-dat/id1160733919" target="_blank">App Store ⇦ Ấn vào đây để tải</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.sinyee.babybus.earthquake" target="_blank">Google Play ⇦ Ấn vào đây để tải</a></li>
+    </ul>
+    <p>Hãy khám phá và nâng cao hiểu biết của bạn về thế giới tự nhiên!</p>
+  </div>
+
+  <!-- Âm thanh -->
+  <audio id="bgMusic" src="background.mp3" loop autoplay></audio>
+  <audio id="correctSound" src="correct.mp3"></audio>
+  <audio id="wrongSound" src="wrong.mp3"></audio>
+
+  <!-- Nút bật tắt nhạc -->
+  <button class="music-toggle" onclick="toggleMusic()">
+    <svg id="musicIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m-7.072 0a5 5 0 010-7.072M12 4v16m-8-8h16" />
+    </svg>
+  </button>
+
+<!-- Footer -->
+<div class="footer-left">© Nguyễn Nhật Thiện - Trường THCS Thủy An</div>
+<div class="footer-right">© Email: nhatthien152011@gmail.com<br>® All Copyright Reserved 2025</div>
+
+<script>
+const questions = [
+  { question: "1. Lớp nào của Trái Đất dày nhất?", options: ["Vỏ Trái Đất", "Lớp Manti", "Lớp Nhân", "Tầng Granit"], correct: 1 },
+  { question: "2. Địa mảng Việt Nam nằm trên mảng nào?", options: ["Bắc Mỹ", "Thái Bình Dương", "Âu - Á", "Nam Mỹ"], correct: 2 },
+  { question: "3. Nguyên nhân chính gây động đất là gì?", options: ["Mưa lớn", "Sự dịch chuyển mảng kiến tạo", "Gió mạnh", "Nhiệt độ cao"], correct: 1 }
+];
+
+let currentIndex = 0;
+const correctMessages = ["Tuyệt vời!", "Chính xác!", "Giỏi quá!", "Quá đỉnh!"];
+const wrongMessages = ["Tiếc quá!", "Sai rồi!", "Cố lên nhé!", "Không sao, tiếp tục!"];
+
+function showWithLoading(funcName, isEntering) {
+  const loadingScreen = document.getElementById('loading-screen');
+  const loadingText = document.getElementById('loading-text');
+  const progressBarContainer = document.getElementById('progress-bar-container');
+  const progressBar = document.getElementById('progress-bar');
+  
+  loadingScreen.style.display = 'flex';
+  if (isEntering) {
+    loadingText.textContent = 'Đang vào thế giới diệu kỳ...';
+    progressBarContainer.style.display = 'block';
+    progressBar.style.width = '0%';
+    setTimeout(() => {
+      progressBar.style.width = '100%';
+    }, 50);
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+      progressBarContainer.style.display = 'none';
+      window[funcName]();
+    }, 1500);
+  } else {
+    loadingText.textContent = 'Đợi một chút';
+    progressBarContainer.style.display = 'none';
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+      window[funcName]();
+    }, 1000);
+  }
+}
+
+function hideAll() {
+  document.getElementById('main-screen').style.display = 'none';
+  document.getElementById('practice').style.display = 'none';
+  document.getElementById('theory').style.display = 'none';
+  document.getElementById('video').style.display = 'none';
+  document.getElementById('info').style.display = 'none';
+}
+
+function showPractice() {
+  hideAll();
+  document.getElementById('practice').style.display = 'block';
+  startQuiz();
+}
+
+function showTheory() {
+  hideAll();
+  document.getElementById('theory').style.display = 'block';
+}
+
+function showVideo() {
+  hideAll();
+  document.getElementById('video').style.display = 'block';
+}
+
+function showInfo() {
+  hideAll();
+  document.getElementById('info').style.display = 'block';
+}
+
+function returnToMain() {
+  hideAll();
+  document.getElementById('main-screen').style.display = 'flex';
+}
+
+function startQuiz() {
+  currentIndex = 0;
+  loadQuestion();
+}
+
+function loadQuestion() {
+  const q = questions[currentIndex];
+  document.getElementById('question').textContent = q.question;
+  const optionsDiv = document.getElementById('options');
+  optionsDiv.innerHTML = '';
+  document.getElementById('feedback').classList.add('hidden');
+  document.getElementById('nextBtn').disabled = true;
+
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt;
+    btn.onclick = () => selectAnswer(btn, idx);
+    optionsDiv.appendChild(btn);
+  });
+}
+
+function selectAnswer(button, idx) {
+  const q = questions[currentIndex];
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b => b.disabled = true);
+  const feedback = document.getElementById('feedback');
+
+  if (idx === q.correct) {
+    button.classList.add('correct');
+    document.getElementById('correctSound').play();
+    feedback.textContent = correctMessages[Math.floor(Math.random() * correctMessages.length)];
+    feedback.classList.add('bg-green-400');
+    feedback.classList.remove('bg-red-400');
+  } else {
+    button.classList.add('wrong');
+    btns[q.correct].classList.add('correct');
+    document.getElementById('wrongSound').play();
+    feedback.textContent = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
+    feedback.classList.add('bg-red-400');
+    feedback.classList.remove('bg-green-400');
+  }
+
+  feedback.classList.remove('hidden');
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex >= questions.length) {
+    alert("Bạn đã hoàn thành bài trắc nghiệm!");
+    returnToMain();
+  } else {
+    loadQuestion();
+  }
+}
+
+function toggleMusic() {
+  const bgMusic = document.getElementById('bgMusic');
+  const musicIcon = document.getElementById('musicIcon');
+  if (bgMusic.paused) {
+    bgMusic.play();
+  } else {
+    bgMusic.pause();
+  }
+}
+</script>
+</body>
+</html>
