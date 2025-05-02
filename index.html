@@ -16,6 +16,196 @@
       justify-content: center;
       align-items: center;
       font-size: 1.2em;
+      #age-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+}
+
+#age-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: none; /* Ban đầu ẩn */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+}
+
+.age-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 3rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+#age-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: none; /* Ban đầu ẩn, chỉ hiển thị khi cần */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+  transition: opacity 0.5s ease; /* Thêm hiệu ứng mờ */
+}
+
+#age-screen.active {
+  display: flex;
+  opacity: 1;
+}
+
+.age-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 3rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.age-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(90deg, #ffd700, #ff6b6b);
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.age-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ff6b6b;
+  transition: transform 0.2s ease;
+}
+
+.age-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.age-slider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ff6b6b;
+  transition: transform 0.2s ease;
+}
+
+.age-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.tick-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tick-group span {
+  position: relative;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.tick-group span::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 8px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.age-value-bubble {
+  position: absolute;
+  top: -50px;
+  left: 15%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #ff6b6b;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: bounce 0.5s ease infinite;
+}
+
+.age-value-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #fff;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+
     }
     .gradient-bg {
       background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
@@ -194,6 +384,13 @@
       list-style-type: none;
       padding-left: 20px;
     }
+    .footer-left {
+  color: white; /* Thêm dòng này để chữ màu trắng */
+}
+
+.footer-right {
+  color: white; /* Thêm dòng này để chữ màu trắng */
+}
     .theory-content li:before {
       content: "•";
       color: #000;
@@ -212,6 +409,35 @@
 </head>
 
 <body class="gradient-bg">
+
+<!-- Màn hình xác minh độ tuổi -->
+<div id="age-screen">
+  <div class="age-container">
+    <h2 class="text-3xl mb-6 text-white font-bold">Vui lòng chọn độ tuổi của bạn</h2>
+    <div class="slider-container">
+      <div class="ticks">
+        <div class="tick-group">
+          <span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span><span>100</span>
+        </div>
+      </div>
+      <input type="range" id="ageSlider" class="age-slider" min="0" max="100" value="15">
+      <div class="age-value-bubble">
+        <p id="ageValue" class="text-2xl font-bold">15</p>
+      </div>
+    </div>
+    <button onclick="submitAge()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg mt-6 transition-all duration-300">Tiếp tục</button>
+  </div>
+</div>
+
+<!-- Các phần khác -->
+<div id="loading-screen">
+  <!-- Nội dung loading -->
+</div>
+<div id="main-screen" class="main-screen">
+  <!-- Nội dung màn hình chính -->
+</div>
+<!-- Các section khác -->
+
 
   <!-- Màn hình loading -->
   <div id="loading-screen">
@@ -352,20 +578,453 @@
   </button>
 
 <!-- Footer -->
-<div class="footer-left">© Nguyễn Nhật Thiện - Học sinh Trường THCS Thủy An</div>
+<div class="footer-left">© Nguyễn Nhật Thiện - Học sinh Trường THCS Thủy An<br>© SĐT : 0904299087 - 0988165985 - 0974551328</div>
 <div class="footer-right">© Email: nhatthien152011@gmail.com<br>® All Copyright Reserved 2025</div>
 
 <script>
 const questions = [
   { question: "1. Lớp nào của Trái Đất dày nhất?", options: ["Vỏ Trái Đất", "Lớp Manti", "Lớp Nhân", "Tầng Granit"], correct: 1 },
   { question: "2. Địa mảng Việt Nam nằm trên mảng nào?", options: ["Bắc Mỹ", "Thái Bình Dương", "Âu - Á", "Nam Mỹ"], correct: 2 },
-  { question: "3. Nguyên nhân chính gây động đất là gì?", options: ["Mưa lớn", "Sự dịch chuyển mảng kiến tạo", "Gió mạnh", "Nhiệt độ cao"], correct: 1 }
+  { question: "3. Nguyên nhân chính gây động đất là gì?", options: ["Mưa lớn", "Sự dịch chuyển mảng kiến tạo", "Gió mạnh", "Nhiệt độ cao"], correct: 1 },
+  { question: "4. Động đất thường xảy ra ở đâu nhiều nhất?", options: ["Vùng đồng bằng", "Đới tiếp giáp địa mảng", "Vùng sa mạc", "Vùng rừng nhiệt đới"], correct: 1 },
+  { question: "5. Lớp vỏ Trái Đất có độ dày trung bình bao nhiêu?", options: ["5-70 km", "100-200 km", "500-1000 km", "2000-3000 km"], correct: 0 },
+  { question: "6. Lớp nào của Trái Đất có nhiệt độ cao nhất?", options: ["Vỏ Trái Đất", "Lớp Manti", "Lớp Nhân ngoài", "Lớp Nhân trong"], correct: 3 },
+  { question: "7. Mảng kiến tạo lớn nhất trên Trái Đất là?", options: ["Mảng Âu - Á", "Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Nam Cực"], correct: 1 },
+  { question: "8. Động đất có thể gây ra hiện tượng nào sau đây?", options: ["Sóng thần", "Bão cát", "Lốc xoáy", "Mưa axit"], correct: 0 },
+  { question: "9. Đứt gãy trong vỏ Trái Đất là nguyên nhân gây ra?", options: ["Núi lửa phun trào", "Động đất", "Sạt lở đất", "Lũ lụt"], correct: 1 },
+  { question: "10. Vùng Vành đai Lửa nằm ở đâu?", options: ["Đại Tây Dương", "Thái Bình Dương", "Ấn Độ Dương", "Bắc Băng Dương"], correct: 1 },
+  { question: "11. Động đất có cường độ được đo bằng thiết bị nào?", options: ["Phong vũ biểu", "Địa chấn kế", "Nhiệt kế", "Áp kế"], correct: 1 },
+  { question: "12. Thang đo Richter dùng để đo cái gì?", options: ["Cường độ động đất", "Nhiệt độ Trái Đất", "Áp suất khí quyển", "Tốc độ gió"], correct: 0 },
+  { question: "13. Động đất có cường độ 7 trở lên được xếp vào loại nào?", options: ["Nhẹ", "Trung bình", "Mạnh", "Rất mạnh"], correct: 2 },
+  { question: "14. Hiện tượng nào sau đây là dấu hiệu của động đất?", options: ["Nước sông rút bất thường", "Mưa lớn kéo dài", "Nhiệt độ tăng cao", "Gió mạnh bất thường"], correct: 0 },
+  { question: "15. Khi động đất xảy ra, việc đầu tiên nên làm là gì?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Lái xe rời đi", "Đứng gần cửa sổ"], correct: 1 },
+  { question: "16. Địa mảng nào sau đây nằm ở Nam bán cầu?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Nam Cực", "Mảng Thái Bình Dương"], correct: 2 },
+  { question: "17. Hậu quả nào sau đây không phải do động đất gây ra?", options: ["Sạt lở đất", "Sóng thần", "Mưa lớn", "Đổ nhà cửa"], correct: 2 },
+  { question: "18. Động đất xảy ra dưới biển có thể gây ra hiện tượng gì?", options: ["Lốc xoáy", "Sóng thần", "Núi lửa phun trào", "Mưa axit"], correct: 1 },
+  { question: "19. Lớp Manti của Trái Đất có trạng thái gì?", options: ["Rắn chắc", "Quánh dẻo - rắn", "Lỏng hoàn toàn", "Khí"], correct: 1 },
+  { question: "20. Động đất thường xảy ra ở khu vực nào sau đây?", options: ["Đồng bằng sông Cửu Long", "Vùng núi Himalaya", "Sa mạc Sahara", "Rừng Amazon"], correct: 1 },
+{ question: "21. Địa mảng Ấn Độ - Ô-xtrây-li-a va chạm với mảng nào?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "22. Động đất có thể gây biến dạng gì ở đáy biển?", options: ["Tạo hố sâu", "Tạo rãnh lớn", "Nâng đáy biển", "Tất cả các đáp án"], correct: 3 },
+{ question: "23. Động vật nào thường có biểu hiện bất thường trước động đất?", options: ["Cá voi", "Chó", "Cá mập", "Chim cánh cụt"], correct: 1 },
+{ question: "24. Động đất mạnh nhất từng được ghi nhận có cường độ bao nhiêu?", options: ["8.5", "9.0", "9.5", "10.0"], correct: 2 },
+{ question: "25. Động đất ở Chile năm 1960 gây ra hiện tượng gì?", options: ["Sóng thần", "Sạt lở đất", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "26. Địa mảng nào sau đây nhỏ nhất?", options: ["Mảng Thái Bình Dương", "Mảng Nam Cực", "Mảng Phi", "Mảng Juan de Fuca"], correct: 3 },
+{ question: "27. Khi xảy ra động đất, không nên làm gì?", options: ["Chui xuống gầm bàn", "Sử dụng thang bộ", "Sử dụng thang máy", "Bảo vệ đầu"], correct: 2 },
+{ question: "28. Động đất có thể gây ra hiện tượng gì trên núi?", options: ["Lở đất", "Sóng thần", "Mưa lớn", "Bão tuyết"], correct: 0 },
+{ question: "29. Địa mảng Bắc Mỹ va chạm với mảng nào?", options: ["Mảng Âu - Á", "Mảng Thái Bình Dương", "Mảng Nam Mỹ", "Mảng Ấn Độ"], correct: 1 },
+{ question: "30. Động đất thường xảy ra ở khu vực nào của Nhật Bản?", options: ["Hokkaido", "Kyushu", "Vành đai Lửa Thái Bình Dương", "Tokyo"], correct: 2 },
+{ question: "31. Động đất dưới 3 độ Richter được xếp vào loại nào?", options: ["Nhẹ", "Trung bình", "Mạnh", "Rất mạnh"], correct: 0 },
+{ question: "32. Động đất gây ra rung chuyển do đâu?", options: ["Sự dịch chuyển mảng kiến tạo", "Mưa lớn", "Gió mạnh", "Nhiệt độ cao"], correct: 0 },
+{ question: "33. Sóng thần do động đất thường cao bao nhiêu?", options: ["1-2 m", "5-10 m", "10-30 m", "50-100 m"], correct: 2 },
+{ question: "34. Động đất ở Haiti năm 2010 có cường độ bao nhiêu?", options: ["6.0", "7.0", "8.0", "9.0"], correct: 1 },
+{ question: "35. Động đất thường không xảy ra ở đâu?", options: ["Vùng núi", "Đồng bằng ổn định", "Đới đứt gãy", "Vành đai Lửa"], correct: 1 },
+{ question: "36. Lớp Nhân trong của Trái Đất có trạng thái gì?", options: ["Rắn", "Lỏng", "Quánh dẻo", "Khí"], correct: 0 },
+{ question: "37. Động đất có thể gây ra hiện tượng gì ở khu vực đô thị?", options: ["Đổ nhà cao tầng", "Sạt lở đất", "Sóng thần", "Lũ lụt"], correct: 0 },
+{ question: "38. Địa mảng nào sau đây nằm ở Bắc bán cầu?", options: ["Mảng Nam Cực", "Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Phi"], correct: 2 },
+{ question: "39. Động đất ở khu vực nào thường gây sóng thần?", options: ["Vùng núi cao", "Vùng ven biển", "Vùng sa mạc", "Vùng đồng bằng"], correct: 1 },
+{ question: "40. Khi động đất xảy ra, nên làm gì để bảo vệ đầu?", options: ["Dùng tay che đầu", "Đội mũ bảo hộ", "Dùng gối hoặc sách", "Tất cả các đáp án"], correct: 3 },
+{ question: "41. Động đất ở Indonesia năm 2004 gây ra hiện tượng gì?", options: ["Sóng thần", "Lở đất", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "42. Địa mảng Phi va chạm với mảng nào?", options: ["Mảng Âu - Á", "Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Nam Cực"], correct: 0 },
+{ question: "43. Động đất có thể gây ra hiện tượng gì ở khu vực nông thôn?", options: ["Đổ nhà cửa", "Sóng thần", "Núi lửa phun trào", "Mưa lớn"], correct: 0 },
+{ question: "44. Động đất ở Nhật Bản năm 2011 có cường độ bao nhiêu?", options: ["7.0", "8.0", "9.0", "10.0"], correct: 2 },
+{ question: "45. Địa mảng nào sau đây không tồn tại?", options: ["Mảng Thái Bình Dương", "Mảng Âu - Á", "Mảng Đông Nam Á", "Mảng Nam Cực"], correct: 2 },
+{ question: "46. Động đất thường xảy ra ở khu vực nào của Mỹ?", options: ["California", "Texas", "Florida", "New York"], correct: 0 },
+{ question: "47. Động đất có thể gây ra hiện tượng gì ở khu vực băng giá?", options: ["Sạt lở tuyết", "Sóng thần", "Núi lửa phun trào", "Mưa lớn"], correct: 0 },
+{ question: "48. Địa mảng Nam Mỹ va chạm với mảng nào?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Ấn Độ"], correct: 0 },
+{ question: "49. Động đất ở khu vực nào thường gây lở đất?", options: ["Vùng đồng bằng", "Vùng núi cao", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "50. Khi động đất xảy ra, không nên làm gì?", options: ["Chạy ra ngoài ngay", "Chui xuống gầm bàn", "Sử dụng thang bộ", "Bảo vệ đầu"], correct: 0 },
+{ question: "51. Động đất có thể gây ra hiện tượng gì ở khu vực ven sông?", options: ["Lũ lụt", "Sóng thần", "Núi lửa phun trào", "Mưa lớn"], correct: 0 },
+{ question: "52. Địa mảng nào sau đây nằm ở Tây bán cầu?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Ấn Độ"], correct: 1 },
+{ question: "53. Động đất ở khu vực nào thường gây cháy nổ?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "54. Động đất ở Thổ Nhĩ Kỳ năm 2023 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.8", "8.5"], correct: 2 },
+{ question: "55. Địa mảng nào sau đây không nằm ở Nam bán cầu?", options: ["Mảng Nam Cực", "Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Phi"], correct: 2 },
+{ question: "56. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Sạt lở tuyết"], correct: 0 },
+{ question: "57. Địa mảng Thái Bình Dương va chạm với mảng nào?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Tất cả các đáp án"], correct: 3 },
+{ question: "58. Động đất ở khu vực nào thường gây thiệt hại lớn?", options: ["Vùng nông thôn", "Vùng đô thị đông dân", "Vùng sa mạc", "Vùng băng giá"], correct: 1 },
+{ question: "59. Động đất có thể gây ra hiện tượng gì ở khu vực đảo?", options: ["Sóng thần", "Lở đất", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "60. Khi động đất xảy ra, nên làm gì nếu ở ngoài trời?", options: ["Đứng gần tòa nhà", "Chạy vào tòa nhà", "Tìm khu vực trống", "Đứng gần cây lớn"], correct: 2 },
+{ question: "61. Động đất ở Nepal năm 2015 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.8", "8.5"], correct: 2 },
+{ question: "62. Địa mảng nào sau đây nằm ở Đông bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 2 },
+{ question: "63. Động đất có thể gây ra hiện tượng gì ở khu vực rừng?", options: ["Cháy rừng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "64. Động đất ở khu vực nào thường gây thiệt hại ít?", options: ["Vùng đô thị", "Vùng sa mạc", "Vùng ven biển", "Vùng núi"], correct: 1 },
+{ question: "65. Địa mảng nào sau đây không nằm ở Tây bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 2 },
+{ question: "66. Động đất có thể gây ra hiện tượng gì ở khu vực băng giá?", options: ["Nứt băng", "Sóng thần", "Núi lửa phun trào", "Mưa lớn"], correct: 0 },
+{ question: "67. Địa mảng Thái Bình Dương có đặc điểm gì?", options: ["Nhỏ nhất", "Lớn nhất", "Ổn định nhất", "Không va chạm"], correct: 1 },
+{ question: "68. Động đất ở khu vực nào thường gây thiệt hại lớn về kinh tế?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 1 },
+{ question: "69. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Sạt lở tuyết"], correct: 0 },
+{ question: "70. Khi động đất xảy ra, không nên làm gì nếu ở trong nhà?", options: ["Chui xuống gầm bàn", "Đứng gần cửa sổ", "Sử dụng thang bộ", "Bảo vệ đầu"], correct: 1 },
+{ question: "71. Động đất ở Mexico năm 1985 có cường độ bao nhiêu?", options: ["6.0", "7.0", "8.1", "9.0"], correct: 2 },
+{ question: "72. Địa mảng nào sau đây nằm ở Bắc bán cầu?", options: ["Mảng Nam Cực", "Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Phi"], correct: 2 },
+{ question: "73. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi?", options: ["Lở đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "74. Động đất ở khu vực nào thường gây thiệt hại lớn về người?", options: ["Vùng nông thôn", "Vùng đô thị đông dân", "Vùng sa mạc", "Vùng băng giá"], correct: 1 },
+{ question: "75. Địa mảng nào sau đây không nằm ở Đông bán cầu?", options: ["Mảng Âu - Á", "Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Phi"], correct: 2 },
+{ question: "76. Động đất có thể gây ra hiện tượng gì ở khu vực ven hồ?", options: ["Lũ lụt", "Sóng thần", "Núi lửa phun trào", "Sạt lở tuyết"], correct: 0 },
+{ question: "77. Địa mảng Nam Cực có đặc điểm gì?", options: ["Nhỏ nhất", "Lớn nhất", "Phủ băng hoàn toàn", "Không va chạm"], correct: 2 },
+{ question: "78. Động đất ở khu vực nào thường gây thiệt hại lớn về cơ sở hạ tầng?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 1 },
+{ question: "79. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ven biển?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Sạt lở tuyết"], correct: 1 },
+{ question: "80. Khi động đất xảy ra, nên làm gì nếu ở trong trường học?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Đứng gần cửa sổ", "Sử dụng thang máy"], correct: 1 },
+{ question: "81. Động đất ở Alaska năm 1964 có cường độ bao nhiêu?", options: ["7.0", "8.0", "9.2", "10.0"], correct: 2 },
+{ question: "82. Địa mảng nào sau đây nằm ở Tây bán cầu?", options: ["Mảng Âu - Á", "Mảng Thái Bình Dương", "Mảng Nam Mỹ", "Mảng Phi"], correct: 2 },
+{ question: "83. Động đất có thể gây ra hiện tượng gì ở khu vực núi lửa?", options: ["Phun trào núi lửa", "Sóng thần", "Lũ lụt", "Sạt lở tuyết"], correct: 0 },
+{ question: "84. Động đất ở khu vực nào thường gây thiệt hại ít về người?", options: ["Vùng đô thị đông dân", "Vùng sa mạc", "Vùng ven biển", "Vùng núi"], correct: 1 },
+{ question: "85. Địa mảng nào sau đây không nằm ở Bắc bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực", "Mảng Phi"], correct: 2 },
+{ question: "86. Động đất có thể gây ra hiện tượng gì ở khu vực rừng nhiệt đới?", options: ["Cháy rừng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "87. Địa mảng Âu - Á va chạm với mảng nào?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Ấn Độ", "Mảng Nam Cực"], correct: 2 },
+{ question: "88. Động đất ở khu vực nào thường gây thiệt hại lớn về môi trường?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 3 },
+{ question: "89. Động đất có thể gây ra hiện tượng gì ở khu vực băng tuyết?", options: ["Nứt băng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "90. Khi động đất xảy ra, không nên làm gì nếu ở trên cao?", options: ["Chui xuống gầm bàn", "Sử dụng thang máy", "Sử dụng thang bộ", "Bảo vệ đầu"], correct: 1 },
+{ question: "91. Động đất ở Iran năm 2003 có cường độ bao nhiêu?", options: ["6.0", "6.6", "7.0", "8.0"], correct: 1 },
+{ question: "92. Địa mảng nào sau đây nằm ở Đông bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Phi", "Mảng Nam Cực"], correct: 2 },
+{ question: "93. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô?", options: ["Cháy đồng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "94. Động đất ở khu vực nào thường gây thiệt hại lớn về nông nghiệp?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 0 },
+{ question: "95. Địa mảng nào sau đây không nằm ở Tây bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Phi", "Mảng Nam Cực"], correct: 2 },
+{ question: "96. Động đất có thể gây ra hiện tượng gì ở khu vực ven biển?", options: ["Sóng thần", "Lở đất", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "97. Địa mảng Nam Mỹ có đặc điểm gì?", options: ["Nhỏ nhất", "Lớn nhất", "Có dãy Andes", "Không va chạm"], correct: 2 },
+{ question: "98. Động đất ở khu vực nào thường gây thiệt hại lớn về giao thông?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 1 },
+{ question: "99. Động đất có thể gây ra hiện tượng gì ở khu vực đồi cát?", options: ["Lún cát", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "100. Khi động đất xảy ra, nên làm gì nếu ở trong xe?", options: ["Dừng xe ở chỗ trống", "Tiếp tục lái xe", "Chạy ra ngoài", "Đứng gần cây lớn"], correct: 0 },
+{ question: "101. Động đất ở Trung Quốc năm 2008 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.9", "8.5"], correct: 2 },
+{ question: "102. Địa mảng nào sau đây nằm ở Bắc bán cầu?", options: ["Mảng Nam Cực", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Phi"], correct: 2 },
+{ question: "103. Động đất có thể gây ra hiện tượng gì ở khu vực núi đá?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "104. Động đất ở khu vực nào thường gây thiệt hại lớn về sinh thái?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 3 },
+{ question: "105. Địa mảng nào sau đây không nằm ở Đông bán cầu?", options: ["Mảng Âu - Á", "Mảng Thái Bình Dương", "Mảng Nam Mỹ", "Mảng Phi"], correct: 2 },
+{ question: "106. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng sông?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Sạt lở tuyết"], correct: 0 },
+{ question: "107. Địa mảng Bắc Mỹ có đặc điểm gì?", options: ["Nhỏ nhất", "Lớn nhất", "Có dãy Rocky", "Không va chạm"], correct: 2 },
+{ question: "108. Động đất ở khu vực nào thường gây thiệt hại lớn về thủy lợi?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 0 },
+{ question: "109. Động đất có thể gây ra hiện tượng gì ở khu vực băng giá?", options: ["Nứt băng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "110. Khi động đất xảy ra, không nên làm gì nếu ở trong công viên?", options: ["Đứng gần cây lớn", "Tìm khu vực trống", "Sử dụng thang bộ", "Bảo vệ đầu"], correct: 0 },
+{ question: "111. Động đất ở Peru năm 2007 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.9", "8.5"], correct: 2 },
+{ question: "112. Địa mảng nào sau đây nằm ở Tây bán cầu?", options: ["Mảng Âu - Á", "Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Phi"], correct: 2 },
+{ question: "113. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "114. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên nước?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 0 },
+{ question: "115. Địa mảng nào sau đây không nằm ở Bắc bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực", "Mảng Phi"], correct: 2 },
+{ question: "116. Động đất có thể gây ra hiện tượng gì ở khu vực rừng khô?", options: ["Cháy rừng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "117. Địa mảng Phi có đặc điểm gì?", options: ["Nhỏ nhất", "Lớn nhất", "Có rãnh Đông Phi", "Không va chạm"], correct: 2 },
+{ question: "118. Động đất ở khu vực nào thường gây thiệt hại lớn về môi trường sống?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 3 },
+{ question: "119. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi?", options: ["Lở đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "120. Khi động đất xảy ra, nên làm gì nếu ở trong nhà cao tầng?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "121. Động đất ở Chile năm 2010 có cường độ bao nhiêu?", options: ["6.0", "7.0", "8.8", "9.0"], correct: 2 },
+{ question: "122. Địa mảng nào sau đây nằm ở Đông bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 2 },
+{ question: "123. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô?", options: ["Cháy đồng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "124. Động đất ở khu vực nào thường gây thiệt hại lớn về năng lượng?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 1 },
+{ question: "125. Địa mảng nào sau đây không nằm ở Tây bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Phi", "Mảng Nam Cực"], correct: 2 },
+{ question: "126. Động đất có thể gây ra hiện tượng gì ở khu vực ven biển?", options: ["Sóng thần", "Lở đất", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "127. Địa mảng Nam Cực có đặc điểm gì?", options: ["Nhỏ nhất", "Lớn nhất", "Phủ băng hoàn toàn", "Không va chạm"], correct: 2 },
+{ question: "128. Động đất ở khu vực nào thường gây thiệt hại lớn về thủy lợi?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 0 },
+{ question: "129. Động đất có thể gây ra hiện tượng gì ở khu vực băng giá?", options: ["Nứt băng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "130. Khi động đất xảy ra, không nên làm gì nếu ở trong công viên?", options: ["Đứng gần cây lớn", "Tìm khu vực trống", "Sử dụng thang bộ", "Bảo vệ đầu"], correct: 0 },
+{ question: "131. Động đất ở Pakistan năm 2005 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.6", "8.5"], correct: 2 },
+{ question: "132. Địa mảng nào sau đây nằm ở Tây bán cầu?", options: ["Mảng Âu - Á", "Mảng Thái Bình Dương", "Mảng Nam Mỹ", "Mảng Phi"], correct: 2 },
+{ question: "133. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "134. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên nước?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 0 },
+{ question: "135. Địa mảng nào sau đây không nằm ở Bắc bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực", "Mảng Phi"], correct: 2 },
+{ question: "136. Động đất có thể gây ra hiện tượng gì ở khu vực rừng khô?", options: ["Cháy rừng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "137. Địa mảng Phi có đặc điểm gì?", options: ["Nhỏ nhất", "Lớn nhất", "Có rãnh Đông Phi", "Không va chạm"], correct: 2 },
+{ question: "138. Động đất ở khu vực nào thường gây thiệt hại lớn về môi trường sống?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 3 },
+{ question: "139. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi?", options: ["Lở đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "140. Khi động đất xảy ra, nên làm gì nếu ở trong nhà cao tầng?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "141. Động đất ở Chile năm 2010 có cường độ bao nhiêu?", options: ["6.0", "7.0", "8.8", "9.0"], correct: 2 },
+{ question: "142. Địa mảng nào sau đây nằm ở Đông bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 2 },
+{ question: "143. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô?", options: ["Cháy đồng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "144. Động đất ở khu vực nào thường gây thiệt hại lớn về năng lượng?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 1 },
+{ question: "145. Địa mảng nào sau đây không nằm ở Tây bán cầu?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Phi", "Mảng Nam Cực"], correct: 2 },
+{ question: "146. Động đất có thể gây ra hiện tượng gì ở khu vực ven biển?", options: ["Sóng thần", "Lở đất", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "147. Địa mảng Nam Cực có đặc điểm gì?", options: ["Nhỏ nhất", "Lớn nhất", "Phủ băng hoàn toàn", "Không va chạm"], correct: 2 },
+{ question: "148. Động đất ở khu vực nào thường gây thiệt hại lớn về thủy lợi?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng băng giá"], correct: 0 },
+{ question: "149. Động đất có thể gây ra hiện tượng gì ở khu vực băng giá?", options: ["Nứt băng", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "150. Khi động đất xảy ra, không nên làm gì nếu ở trong công viên?", options: ["Đứng gần cây lớn", "Tìm khu vực trống", "Sử dụng thang bộ", "Bảo vệ đầu"], correct: 0 },
+{ question: "151. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ sinh thái biển?", options: ["Vùng đồng bằng", "Vùng ven biển", "Vùng núi", "Vùng sa mạc"], correct: 1 },
+{ question: "152. Địa mảng nào sau đây có tốc độ di chuyển nhanh nhất?", options: ["Mảng Thái Bình Dương", "Mảng Âu - Á", "Mảng Nam Cực", "Mảng Bắc Mỹ"], correct: 0 },
+{ question: "153. Động đất có thể gây ra hiện tượng gì ở khu vực đầm lầy?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Sạt lở tuyết"], correct: 0 },
+{ question: "154. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên rừng?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng rừng", "Vùng sa mạc"], correct: 2 },
+{ question: "155. Địa mảng nào sau đây có liên quan đến dãy Alps?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "156. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập mặn?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "157. Địa mảng nào sau đây có liên quan đến dãy Andes?", options: ["Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "158. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống nước ngầm?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 0 },
+{ question: "159. Động đất có thể gây ra hiện tượng gì ở khu vực cao nguyên?", options: ["Lở đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "160. Khi động đất xảy ra, nên làm gì nếu ở trong rạp chiếu phim?", options: ["Chạy ra ngoài", "Chui xuống ghế", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "161. Động đất ở El Salvador năm 2001 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.7", "8.0"], correct: 2 },
+{ question: "162. Địa mảng nào sau đây có liên quan đến dãy Himalaya?", options: ["Mảng Âu - Á", "Mảng Ấn Độ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 1 },
+{ question: "163. Động đất có thể gây ra hiện tượng gì ở khu vực đồi cát ven biển?", options: ["Lún cát", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 1 },
+{ question: "164. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên khoáng sản?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng núi", "Vùng sa mạc"], correct: 2 },
+{ question: "165. Địa mảng nào sau đây có liên quan đến dãy Rocky?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "166. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng phù sa?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "167. Địa mảng nào sau đây có liên quan đến rãnh Mariana?", options: ["Mảng Thái Bình Dương", "Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Nam Cực"], correct: 0 },
+{ question: "168. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống cấp nước?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "169. Động đất có thể gây ra hiện tượng gì ở khu vực rừng ngập mặn?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "170. Khi động đất xảy ra, nên làm gì nếu ở trong thư viện?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "171. Động đất ở Guatemala năm 1976 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.5", "8.0"], correct: 2 },
+{ question: "172. Địa mảng nào sau đây có liên quan đến dãy Mid-Atlantic?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 1 },
+{ question: "173. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi thấp?", options: ["Lở đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "174. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên đất?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng đồng bằng", "Vùng sa mạc"], correct: 2 },
+{ question: "175. Địa mảng nào sau đây có liên quan đến rãnh Nhật Bản?", options: ["Mảng Thái Bình Dương", "Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Nam Cực"], correct: 0 },
+{ question: "176. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "177. Địa mảng nào sau đây có liên quan đến dãy Ural?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "178. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống điện?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "179. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "180. Khi động đất xảy ra, nên làm gì nếu ở trong trung tâm thương mại?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "181. Động đất ở Colombia năm 1999 có cường độ bao nhiêu?", options: ["6.0", "6.2", "7.0", "8.0"], correct: 1 },
+{ question: "182. Địa mảng nào sau đây có liên quan đến dãy Appalachian?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "183. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá vôi?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "184. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên dầu khí?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "185. Địa mảng nào sau đây có liên quan đến rãnh Peru-Chile?", options: ["Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "186. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng khô cằn?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "187. Địa mảng nào sau đây có liên quan đến dãy Caucasus?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "188. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống viễn thông?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "189. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "190. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "191. Động đất ở Đài Loan năm 1999 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.6", "8.0"], correct: 2 },
+{ question: "192. Địa mảng nào sau đây có liên quan đến dãy núi Zagros?", options: ["Mảng Âu - Á", "Mảng Ả Rập", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 1 },
+{ question: "193. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đất đỏ?", options: ["Lở đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "194. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên thủy sản?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "195. Địa mảng nào sau đây có liên quan đến rãnh Kermadec?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "196. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "197. Địa mảng nào sau đây có liên quan đến dãy núi Taurus?", options: ["Mảng Âu - Á", "Mảng Ả Rập", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 1 },
+{ question: "198. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống giao thông đường bộ?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "199. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập lũ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "200. Khi động đất xảy ra, nên làm gì nếu ở trong sân vận động?", options: ["Chạy ra ngoài", "Tìm khu vực trống", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "201. Động đất ở Philippines năm 1990 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.8", "8.0"], correct: 2 },
+{ question: "202. Địa mảng nào sau đây có liên quan đến dãy núi Atlas?", options: ["Mảng Phi", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "203. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá granit?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "204. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên đất canh tác?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng đồng bằng", "Vùng sa mạc"], correct: 2 },
+{ question: "205. Địa mảng nào sau đây có liên quan đến rãnh Tonga?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "206. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng khô hạn?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "207. Địa mảng nào sau đây có liên quan đến dãy núi Altai?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "208. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường sắt?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "209. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô cằn?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "210. Khi động đất xảy ra, nên làm gì nếu ở trong khách sạn?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "211. Động đất ở Ấn Độ năm 2001 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.7", "8.0"], correct: 2 },
+{ question: "212. Địa mảng nào sau đây có liên quan đến dãy núi Drakensberg?", options: ["Mảng Phi", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "213. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá bazan?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "214. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên lâm nghiệp?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng rừng", "Vùng sa mạc"], correct: 2 },
+{ question: "215. Địa mảng nào sau đây có liên quan đến rãnh Puerto Rico?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "216. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập mặn ven biển?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "217. Địa mảng nào sau đây có liên quan đến dãy núi Pyrenees?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "218. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống cảng biển?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "219. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước ven biển?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "220. Khi động đất xảy ra, nên làm gì nếu ở trong bệnh viện?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "221. Động đất ở Afghanistan năm 2022 có cường độ bao nhiêu?", options: ["6.0", "6.1", "7.0", "8.0"], correct: 1 },
+{ question: "222. Địa mảng nào sau đây có liên quan đến dãy núi Great Dividing Range?", options: ["Mảng Ấn Độ - Ô-xtrây-li-a", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "223. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá sa thạch?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "224. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên nước mặt?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng đồng bằng", "Vùng sa mạc"], correct: 2 },
+{ question: "225. Địa mảng nào sau đây có liên quan đến rãnh Aleutian?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "226. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng khô cằn ven biển?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 1 },
+{ question: "227. Địa mảng nào sau đây có liên quan đến dãy núi Carpathian?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "228. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường hàng không?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "229. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven biển?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 1 },
+{ question: "230. Khi động đất xảy ra, nên làm gì nếu ở trong nhà ga?", options: ["Chạy ra ngoài", "Tìm khu vực trống", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "231. Động đất ở Vanuatu năm 2019 có cường độ bao nhiêu?", options: ["6.0", "6.5", "7.0", "8.0"], correct: 1 },
+{ question: "232. Địa mảng nào sau đây có liên quan đến dãy núi Southern Alps?", options: ["Mảng Ấn Độ - Ô-xtrây-li-a", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "233. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá phiến?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "234. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng tái tạo?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "235. Địa mảng nào sau đây có liên quan đến rãnh Java?", options: ["Mảng Ấn Độ - Ô-xtrây-li-a", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "236. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ ven biển?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "237. Địa mảng nào sau đây có liên quan đến dãy núi Scandinavian?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "238. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường thủy?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "239. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập lũ ven sông?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "240. Khi động đất xảy ra, nên làm gì nếu ở trong khu vui chơi?", options: ["Chạy ra ngoài", "Tìm khu vực trống", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "241. Động đất ở Papua New Guinea năm 2018 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.5", "8.0"], correct: 2 },
+{ question: "242. Địa mảng nào sau đây có liên quan đến dãy núi Eastern Ghats?", options: ["Mảng Ấn Độ - Ô-xtrây-li-a", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "243. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá vôi ven biển?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 1 },
+{ question: "244. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên thủy điện?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng núi", "Vùng sa mạc"], correct: 2 },
+{ question: "245. Địa mảng nào sau đây có liên quan đến rãnh Ryukyu?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "246. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven sông?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "247. Địa mảng nào sau đây có liên quan đến dãy núi Apennines?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "248. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống xử lý nước thải?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "249. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven sông?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "250. Khi động đất xảy ra, nên làm gì nếu ở trong nhà hàng?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "251. Động đất ở Tonga năm 2009 có cường độ bao nhiêu?", options: ["6.0", "7.0", "8.1", "8.5"], correct: 2 },
+{ question: "252. Địa mảng nào sau đây có liên quan đến dãy núi Western Ghats?", options: ["Mảng Ấn Độ - Ô-xtrây-li-a", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "253. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá sa thạch ven biển?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 1 },
+{ question: "254. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng gió?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "255. Địa mảng nào sau đây có liên quan đến rãnh Philippine?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "256. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven biển?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "257. Địa mảng nào sau đây có liên quan đến dãy núi Dinaric Alps?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "258. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn dầu?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "259. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập lũ ven biển?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "260. Khi động đất xảy ra, nên làm gì nếu ở trong nhà hát?", options: ["Chạy ra ngoài", "Chui xuống gầm ghế", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "261. Động đất ở Solomon Islands năm 2013 có cường độ bao nhiêu?", options: ["6.0", "7.0", "8.0", "8.5"], correct: 2 },
+{ question: "262. Địa mảng nào sau đây có liên quan đến dãy núi Flinders Ranges?", options: ["Mảng Ấn Độ - Ô-xtrây-li-a", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "263. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá bazan ven biển?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 1 },
+{ question: "264. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng mặt trời?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 3 },
+{ question: "265. Địa mảng nào sau đây có liên quan đến rãnh South Sandwich?", options: ["Mảng Nam Cực", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "266. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven hồ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "267. Địa mảng nào sau đây có liên quan đến dãy núi Sayan?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "268. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn khí?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "269. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước ven hồ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "270. Khi động đất xảy ra, nên làm gì nếu ở trong nhà kho?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "271. Động đất ở Fiji năm 2018 có cường độ bao nhiêu?", options: ["6.0", "7.0", "8.2", "8.5"], correct: 2 },
+{ question: "272. Địa mảng nào sau đây có liên quan đến dãy núi Ethiopian Highlands?", options: ["Mảng Phi", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "273. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá vôi ven sông?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "274. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng địa nhiệt?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng núi lửa", "Vùng sa mạc"], correct: 2 },
+{ question: "275. Địa mảng nào sau đây có liên quan đến rãnh Cayman?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "276. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ ven hồ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "277. Địa mảng nào sau đây có liên quan đến dãy núi Tien Shan?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "278. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống xử lý rác thải?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "279. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven hồ?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "280. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy điện?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "281. Động đất ở New Zealand năm 2016 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.8", "8.0"], correct: 2 },
+{ question: "282. Địa mảng nào sau đây có liên quan đến dãy núi Kilimanjaro?", options: ["Mảng Phi", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "283. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá phiến ven sông?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "284. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng sinh khối?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng rừng", "Vùng sa mạc"], correct: 2 },
+{ question: "285. Địa mảng nào sau đây có liên quan đến rãnh Izu-Ogasawara?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "286. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven biển?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "287. Địa mảng nào sau đây có liên quan đến dãy núi Pamir?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "288. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống nước?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "289. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven hồ?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "290. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy điện hạt nhân?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "291. Động đất ở Ecuador năm 2016 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.8", "8.0"], correct: 2 },
+{ question: "292. Địa mảng nào sau đây có liên quan đến dãy núi Deccan Traps?", options: ["Mảng Ấn Độ - Ô-xtrây-li-a", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "293. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá phiến ven biển?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 1 },
+{ question: "294. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng sóng?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "295. Địa mảng nào sau đây có liên quan đến rãnh Middle America?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "296. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ ven biển?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 1 },
+{ question: "297. Địa mảng nào sau đây có liên quan đến dãy núi Hindu Kush?", options: ["Mảng Âu - Á", "Mảng Ấn Độ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 1 },
+{ question: "298. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn nước nóng?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng núi lửa", "Vùng sa mạc"], correct: 2 },
+{ question: "299. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước ven sông?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "300. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy sản xuất hóa chất?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "301. Động đất ở Myanmar năm 2011 có cường độ bao nhiêu?", options: ["6.0", "6.8", "7.0", "8.0"], correct: 1 },
+{ question: "302. Địa mảng nào sau đây có liên quan đến dãy núi An Nam?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "303. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá vôi ven hồ?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "304. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng thủy triều?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "305. Địa mảng nào sau đây có liên quan đến rãnh Kuril-Kamchatka?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "306. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven sông lớn?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "307. Địa mảng nào sau đây có liên quan đến dãy núi Verkhoyansk?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "308. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống cảng hàng không?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "309. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven sông lớn?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "310. Khi động đất xảy ra, nên làm gì nếu ở trong khu công nghiệp?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "311. Động đất ở Costa Rica năm 2012 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.6", "8.0"], correct: 2 },
+{ question: "312. Địa mảng nào sau đây có liên quan đến dãy núi Brazilian Highlands?", options: ["Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "313. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá sa thạch ven sông?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "314. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng hạt nhân?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 1 },
+{ question: "315. Địa mảng nào sau đây có liên quan đến rãnh Atacama?", options: ["Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "316. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ ven sông nhỏ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "317. Địa mảng nào sau đây có liên quan đến dãy núi Chersky?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "318. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn nước sạch?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "319. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước ven hồ nhỏ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "320. Khi động đất xảy ra, nên làm gì nếu ở trong trung tâm nghiên cứu?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "321. Động đất ở Honduras năm 2009 có cường độ bao nhiêu?", options: ["6.0", "7.0", "7.3", "8.0"], correct: 2 },
+{ question: "322. Địa mảng nào sau đây có liên quan đến dãy núi Guiana Highlands?", options: ["Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "323. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá bazan ven sông?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "324. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng hóa thạch?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "325. Địa mảng nào sau đây có liên quan đến rãnh South Shetland?", options: ["Mảng Nam Cực", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "326. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven hồ lớn?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "327. Địa mảng nào sau đây có liên quan đến dãy núi Kolyma?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "328. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn nước thải?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "329. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven hồ lớn?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "330. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy lọc dầu?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "331. Động đất ở Nicaragua năm 2014 có cường độ bao nhiêu?", options: ["6.0", "6.1", "7.0", "8.0"], correct: 1 },
+{ question: "332. Địa mảng nào sau đây có liên quan đến dãy núi Patagonia?", options: ["Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "333. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá vôi ven sông lớn?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "334. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng sinh học?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng rừng", "Vùng sa mạc"], correct: 2 },
+{ question: "335. Địa mảng nào sau đây có liên quan đến rãnh Yap?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "336. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ ven hồ nhỏ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "337. Địa mảng nào sau đây có liên quan đến dãy núi Stanovoy?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "338. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn khí tự nhiên?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "339. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước ven sông lớn?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "340. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy thép?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "341. Động đất ở El Salvador năm 2019 có cường độ bao nhiêu?", options: ["6.0", "6.6", "7.0", "8.0"], correct: 1 },
+{ question: "342. Địa mảng nào sau đây có liên quan đến dãy núi Bolivian Altiplano?", options: ["Mảng Nam Mỹ", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "343. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá sa thạch ven hồ?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "344. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng tái chế?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 1 },
+{ question: "345. Địa mảng nào sau đây có liên quan đến rãnh Palau?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "346. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven sông trung bình?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "347. Địa mảng nào sau đây có liên quan đến dãy núi Koryak?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "348. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn dầu thô?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "349. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven sông trung bình?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "350. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy sản xuất thực phẩm?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "351. Động đất ở Guatemala năm 2017 có cường độ bao nhiêu?", options: ["6.0", "6.9", "7.0", "8.0"], correct: 1 },
+{ question: "352. Địa mảng nào sau đây có liên quan đến dãy núi Mexican Plateau?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "353. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá bazan ven hồ?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "354. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng khí tự nhiên?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "355. Địa mảng nào sau đây có liên quan đến rãnh New Hebrides?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "356. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ ven sông lớn?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "357. Địa mảng nào sau đây có liên quan đến dãy núi Dzhugdzhur?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "358. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn nước nóng địa nhiệt?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng núi lửa", "Vùng sa mạc"], correct: 2 },
+{ question: "359. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước ven hồ lớn?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "360. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy sản xuất điện tử?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "361. Động đất ở Panama năm 2018 có cường độ bao nhiêu?", options: ["6.0", "6.1", "7.0", "8.0"], correct: 1 },
+{ question: "362. Địa mảng nào sau đây có liên quan đến dãy núi Columbia Plateau?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "363. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá vôi ven hồ lớn?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "364. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng than?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng núi", "Vùng sa mạc"], correct: 2 },
+{ question: "365. Địa mảng nào sau đây có liên quan đến rãnh Manus?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "366. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven hồ nhỏ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "367. Địa mảng nào sau đây có liên quan đến dãy núi Aldan Highlands?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "368. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn dầu khí?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "369. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven hồ nhỏ?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "370. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy sản xuất dược phẩm?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "371. Động đất ở Bolivia năm 2016 có cường độ bao nhiêu?", options: ["6.0", "6.5", "7.0", "8.0"], correct: 1 },
+{ question: "372. Địa mảng nào sau đây có liên quan đến dãy núi Laurentian Plateau?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "373. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá sa thạch ven hồ lớn?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "374. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng dầu mỏ?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "375. Địa mảng nào sau đây có liên quan đến rãnh North Solomon?", options: ["Mảng Thái Bình Dương", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "376. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ ven hồ lớn?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "377. Địa mảng nào sau đây có liên quan đến dãy núi Yablonovy?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "378. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn nước sinh hoạt?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "379. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước ven sông nhỏ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "380. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy sản xuất ô tô?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "381. Động đất ở Paraguay năm 2018 có cường độ bao nhiêu?", options: ["5.0", "5.5", "6.0", "7.0"], correct: 1 },
+{ question: "382. Địa mảng nào sau đây có liên quan đến dãy núi Ozark Plateau?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "383. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá bazan ven hồ lớn?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "384. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng nước?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng núi", "Vùng sa mạc"], correct: 2 },
+{ question: "385. Địa mảng nào sau đây có liên quan đến rãnh Hjort?", options: ["Mảng Nam Cực", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "386. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập nước ven sông nhỏ?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "387. Địa mảng nào sau đây có liên quan đến dãy núi Sikhote-Alin?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "388. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn nước công nghiệp?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 1 },
+{ question: "389. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ khô hạn ven sông nhỏ?", options: ["Nứt đất", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "390. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy sản xuất giấy?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 },
+{ question: "391. Động đất ở Uruguay năm 2016 có cường độ bao nhiêu?", options: ["4.0", "4.5", "5.0", "6.0"], correct: 1 },
+{ question: "392. Địa mảng nào sau đây có liên quan đến dãy núi Colorado Plateau?", options: ["Mảng Bắc Mỹ", "Mảng Nam Mỹ", "Mảng Âu - Á", "Mảng Thái Bình Dương"], correct: 0 },
+{ question: "393. Động đất có thể gây ra hiện tượng gì ở khu vực đồi núi đá vôi ven sông nhỏ?", options: ["Lở đá", "Sóng thần", "Núi lửa phun trào", "Lũ lụt"], correct: 0 },
+{ question: "394. Động đất ở khu vực nào thường gây thiệt hại lớn về tài nguyên năng lượng gió biển?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng ven biển", "Vùng sa mạc"], correct: 2 },
+{ question: "395. Địa mảng nào sau đây có liên quan đến rãnh Macquarie?", options: ["Mảng Ấn Độ - Ô-xtrây-li-a", "Mảng Bắc Mỹ", "Mảng Âu - Á", "Mảng Nam Cực"], correct: 0 },
+{ question: "396. Động đất có thể gây ra hiện tượng gì ở khu vực đồng bằng ngập lũ ven sông trung bình?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "397. Địa mảng nào sau đây có liên quan đến dãy núi Bureya?", options: ["Mảng Âu - Á", "Mảng Bắc Mỹ", "Mảng Thái Bình Dương", "Mảng Nam Cực"], correct: 0 },
+{ question: "398. Động đất ở khu vực nào thường gây thiệt hại lớn về hệ thống đường ống dẫn nước nông nghiệp?", options: ["Vùng nông thôn", "Vùng đô thị", "Vùng sa mạc", "Vùng ven biển"], correct: 0 },
+{ question: "399. Động đất có thể gây ra hiện tượng gì ở khu vực đồng cỏ ngập nước ven sông trung bình?", options: ["Lún đất", "Sóng thần", "Núi lửa phun trào", "Cháy rừng"], correct: 0 },
+{ question: "400. Khi động đất xảy ra, nên làm gì nếu ở trong nhà máy sản xuất nhựa?", options: ["Chạy ra ngoài", "Chui xuống gầm bàn", "Sử dụng thang máy", "Đứng gần cửa sổ"], correct: 1 }
 ];
 
 let currentIndex = 0;
 const correctMessages = ["Tuyệt vời!", "Chính xác!", "Giỏi quá!", "Quá đỉnh!"];
 const wrongMessages = ["Tiếc quá!", "Sai rồi!", "Cố lên nhé!", "Không sao, tiếp tục!"];
+// Kiểm tra và hiển thị màn hình độ tuổi khi trang tải
+// javascript
+// Kiểm tra và hiển thị màn hình độ tuổi khi trang tải
+function checkAgeScreen() {
+  const ageScreen = document.getElementById('age-screen');
+  const mainScreen = document.getElementById('main-screen');
+  if (!localStorage.getItem('ageSubmitted')) {
+    ageScreen.classList.add('active'); // Hiển thị màn hình
+    mainScreen.style.display = 'none';
+    console.log('Màn hình độ tuổi được hiển thị'); // Debug
+  } else {
+    ageScreen.classList.remove('active');
+    mainScreen.style.display = 'flex';
+    console.log('Màn hình chính được hiển thị');
+  }
+}
 
+// Cập nhật giá trị độ tuổi và vị trí bong bóng khi trượt
+document.getElementById('ageSlider').addEventListener('input', function() {
+  const value = this.value;
+  document.getElementById('ageValue').textContent = value;
+  const percentage = (value / 100) * 100;
+  const bubble = document.querySelector('.age-value-bubble');
+  bubble.style.left = `${percentage}%`;
+});
+
+// Xử lý khi nhấn nút "Tiếp tục"
+function submitAge() {
+  localStorage.setItem('ageSubmitted', 'true');
+  document.getElementById('age-screen').classList.remove('active');
+  document.getElementById('main-screen').style.display = 'flex';
+  console.log('Đã xác nhận độ tuổi');
+}
+
+// Gọi hàm kiểm tra khi trang tải
+window.onload = checkAgeScreen;
+// Hết !
 function showWithLoading(funcName, isEntering) {
   const loadingScreen = document.getElementById('loading-screen');
   const loadingText = document.getElementById('loading-text');
